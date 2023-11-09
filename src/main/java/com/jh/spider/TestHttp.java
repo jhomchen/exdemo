@@ -17,7 +17,7 @@ public class TestHttp {
 		 String url1="http://d2.htqyy.com/down9/57/mp3/11/"+new Date().getHours();
 		 try {
 			String html=HttpClientUtils.doHttpReq(url1, HttpProperties.GET);
-			//ParseHtqyyHtmlUtils.parseHtqyyHtml(html);
+//			ParseHtqyyHtmlUtils.parseHtqyyHtml(html);
 			System.out.println(html);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
