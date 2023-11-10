@@ -15,11 +15,12 @@ public class ParseHtqyyHtmlUtils {
 	 * 好听轻音乐网站解析
 	 * @param html
 	 */
-	public static void parseHtqyyHtml(String html) {
+	public static String parseHtqyyHtml(String html) {
 		
 		Document doc=Jsoup.parse(html);
 		//每个分类下的列表
 		Element e=doc.getElementById("musicList");
+		String ss="";
 		if(e!=null) {
 			Elements es=e.getElementsByClass("mItem");
 			if(es!=null&&es.size()>0) {
@@ -31,11 +32,11 @@ public class ParseHtqyyHtmlUtils {
 					Element eart=eli.child(3).child(0);
 					String art=eart.text();
 					String lt=title+"【"+art+"】";
-					System.out.println(lt+"====="+href);
+					ss=ss+";"+lt+"=="+href;
 				}
 			}
 		}
-		
+		return ss;
 	}
 	
 	

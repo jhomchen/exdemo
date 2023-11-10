@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+"https://struts.apache.org/dtds/struts-2.5.dtd">
+  <struts>
+       <package name="default" extends="struts-default" namespace="/">
+           <action name="pageSpider" class="com.jh.spider.action.PageSpiderAction">
+                <result name="success">/result.jsp</result>
+           </action>
+       </package>
+  </struts>
