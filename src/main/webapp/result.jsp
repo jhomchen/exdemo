@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Title</title>
+<title>返回结果</title>
 </head>
 <body>
-      ${html}
+      <div style="margin: 0 auto;text-align: center;border :1px solid green;">
+          ${html}
+       <div>
+            ${nextPage}
+       </div>
+      </div>
+     
 </body>
 </html>

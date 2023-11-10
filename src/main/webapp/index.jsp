@@ -4,17 +4,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Title</title>
+<title>好听轻音乐下载</title>
 </head>
+<style type="text/css">
+.d1{
+  border :1px solid green;
+  width:400px;
+  height:200px;
+  text-align: center;
+  line-height: 100px;
+  margin: 0 auto;
+}
+</style>
 <body>
     <form action="pageSpider.action" method="post">
+         <div class="d1">
+             <label>请选择页面分类：</label>
+             <select name ="userName">
+               <option value="1">纯音乐</option>
+               <option value="2">新世纪</option>
+               <option value="3">钢琴曲</option>
+               <option value="4">减压放松</option>
+               <option value="5">中国音乐</option>
+               <option value="6">天籁之音</option>
+               <option value="7">影视原声</option>
+               <option value="8">电子乐</option>
+               <option value="9">背景音乐</option>
+               <option value="10">手机铃声</option>
+               <option value="12">胎教音乐</option>
+               <option value="13">佛乐</option>
+             </select>
          <div>
-             <label>分类：</label>
-             <input type="text" name="userName" />
+             <input  type="submit"  value="解析" />
          </div>
-         <div>
-             <input  type="submit"  value="提交" />
          </div>
+        
     </form>
 </body>
 </html>

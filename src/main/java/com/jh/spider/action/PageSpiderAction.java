@@ -42,7 +42,7 @@ public class PageSpiderAction extends ActionSupport {
     	String url1="http://www.htqyy.com/genre/"+this.getUserName();
 		 try {
 			String html=HttpClientUtils.doHttpReq(url1, HttpProperties.GET);
-			String ss=ParseHtqyyHtmlUtils.parseHtqyyHtml(html);
+			String ss=ParseHtqyyHtmlUtils.parseHtqyyHtml(html,this.getUserName());
 			this.setHtml(ss);
 		} catch (Exception e) {
 			if(this.getUserName()==null || "".equals(this.getUserName())) {

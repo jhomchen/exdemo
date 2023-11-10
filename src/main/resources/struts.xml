@@ -6,5 +6,8 @@
            <action name="pageSpider" class="com.jh.spider.action.PageSpiderAction">
                 <result name="success">/result.jsp</result>
            </action>
+           <action name="musicDownload" class="com.jh.spider.action.MusicDownloadAction">
+                <result name="success">/result.jsp</result>
+           </action>
        </package>
   </struts>
