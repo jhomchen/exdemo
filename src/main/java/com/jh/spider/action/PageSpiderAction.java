@@ -45,9 +45,9 @@ public class PageSpiderAction extends ActionSupport {
 			String ss=ParseHtqyyHtmlUtils.parseHtqyyHtml(html);
 			this.setHtml(ss);
 		} catch (Exception e) {
-			if(this.getUserName()==null || "".equals(this.getUserName())) 
-		    this.setHtml(e.getMessage());
-			e.printStackTrace();
+			if(this.getUserName()==null || "".equals(this.getUserName())) {
+				this.setHtml(e.getMessage()+"参数无效或未提交参数");
+			} 
 		}
     }
 }
