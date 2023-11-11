@@ -54,4 +54,8 @@ public class DownLoadUtils {
         
         return flag;
 	}
+	
+	private static void downFromSS(String file) {
+
+	}
 }

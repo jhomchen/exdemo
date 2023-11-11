@@ -12,6 +12,31 @@ public class PageSpiderAction extends ActionSupport {
 	
 	private String html;
 	
+	//分页
+	private String pageIndex;
+	private String nextPage;
+	
+	
+	public String getPageIndex() {
+		return pageIndex;
+	}
+
+
+	public void setPageIndex(String pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+
+	public String getNextPage() {
+		return nextPage;
+	}
+
+
+	public void setNextPage(String nextPage) {
+		this.nextPage = nextPage;
+	}
+
+
 	public String getHtml() {
 		return html;
 	}
@@ -38,12 +63,27 @@ public class PageSpiderAction extends ActionSupport {
     }
 
     private void parseHtqyy() {
-    	
-    	String url1="http://www.htqyy.com/genre/"+this.getUserName();
+    	if(this.getPageIndex()==null ||"".equals(this.getPageIndex())) {
+    		this.setPageIndex("0");
+    	}
+    	String url1="http://www.htqyy.com/genre/musicList/"+this.getUserName()+"?pageIndex="+this.getPageIndex()+"&pageSize=20&order=hot";
+
+    	//String url1="http://www.htqyy.com/genre/"+this.getUserName();
 		 try {
 			String html=HttpClientUtils.doHttpReq(url1, HttpProperties.GET);
 			String ss=ParseHtqyyHtmlUtils.parseHtqyyHtml(html,this.getUserName());
-			this.setHtml(ss);
+			if(ss!=null && !"".equals(ss)) {
+				//
+				int i=Integer.parseInt(this.getPageIndex());
+				i++;
+				String aslink="/pageSpider.action?userName="+this.getUserName()+"&pageIndex="+i;
+				String aTag="<a href=\""+aslink+"\">下一页</a>";
+				this.setNextPage(aTag);
+				this.setHtml(ss);
+			}else {
+				this.setHtml("没有了！");
+			}
+			
 		} catch (Exception e) {
 			if(this.getUserName()==null || "".equals(this.getUserName())) {
 				this.setHtml(e.getMessage()+"参数无效或未提交参数");
