@@ -58,7 +58,8 @@ public class PageSpiderAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		parseHtqyy();
+		//parseHtqyy();
+		parseHtqyyToDB();
 		return "success";
     }
 
@@ -84,6 +85,25 @@ public class PageSpiderAction extends ActionSupport {
 				this.setHtml("没有了！");
 			}
 			
+		} catch (Exception e) {
+			if(this.getUserName()==null || "".equals(this.getUserName())) {
+				this.setHtml(e.getMessage()+"参数无效或未提交参数");
+			} 
+		}
+    }
+    
+    
+    private void parseHtqyyToDB() {
+		 try {
+			for(int i=0;i<20;i++) {
+		    	String url1="http://www.htqyy.com/genre/musicList/"+this.getUserName()+"?pageIndex="+i+"&pageSize=20&order=hot";
+				String html=HttpClientUtils.doHttpReq(url1, HttpProperties.GET);
+				boolean flag=ParseHtqyyHtmlUtils.parseHtqyyHtmlAndSaveDB(html,this.getUserName());
+				if(!flag) {
+					break;
+				}
+			}
+			this.setHtml("该分类数据保存完了！");
 		} catch (Exception e) {
 			if(this.getUserName()==null || "".equals(this.getUserName())) {
 				this.setHtml(e.getMessage()+"参数无效或未提交参数");

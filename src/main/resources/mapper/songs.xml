@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间mapper：bean.Person -->
+<mapper namespace="bean.Songs">
+    <resultMap type="Songs" id="selectSongs">
+        <id property="id" column="s_id" />
+        <result property="name" column="s_name"/>
+        <result property="ablum" column="s_ablum"/>
+        <result property="link" column="s_link"/>
+        <result property="category" column="s_cate"/>
+        <result property="desc" column="s_desc"/>
+        <result property="date" column="s_date"/>
+    </resultMap>
+
+    <select id="getSongById" parameterType="Songs" resultType="Songs" resultMap="selectSongs">
+        <!-- 底层的SQL语句 -->
+        select * from songs_detail s where s.s_id =#{id}
+    </select>
+
+    <select id="getAllSongList" resultType="Songs" resultMap="selectSongs">
+        <!-- 底层的SQL语句 -->
+        select * from songs_detail s
+    </select>
+    <insert id="addSongs" parameterType="Songs" keyProperty="id">
+       insert into songs_detail (s_id,s_name,s_ablum,s_link,s_cate,s_desc,s_date) 
+       values(#{id},#{name},#{ablum},#{link},#{category},#{desc},now())
+    </insert>
+</mapper>
