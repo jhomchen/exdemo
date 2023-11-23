@@ -58,8 +58,8 @@ public class PageSpiderAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		//parseHtqyy();
-		parseHtqyyToDB();
+		parseHtqyy();
+		//parseHtqyyToDB();
 		return "success";
     }
 
@@ -76,10 +76,19 @@ public class PageSpiderAction extends ActionSupport {
 			if(ss!=null && !"".equals(ss)) {
 				//
 				int i=Integer.parseInt(this.getPageIndex());
-				i++;
+				i=i+1;
 				String aslink="/pageSpider.action?userName="+this.getUserName()+"&pageIndex="+i;
-				String aTag="<a href=\""+aslink+"\">下一页</a>";
-				this.setNextPage(aTag);
+				if(i>1) {
+					int j=i-2;
+					String preLink="/pageSpider.action?userName="+this.getUserName()+"&pageIndex="+j;
+					String prAtag="<a href=\""+preLink+"\">上一页</a><-----------";
+					String aTag=prAtag+"当前是第"+i+"页"+"-----------><a href=\""+aslink+"\">下一页</a>";
+					this.setNextPage(aTag);
+				}else {
+					String aTag="当前是第"+i+"页"+"-----------><a href=\""+aslink+"\">下一页</a>";
+					this.setNextPage(aTag);
+				}
+				
 				this.setHtml(ss);
 			}else {
 				this.setHtml("没有了！");

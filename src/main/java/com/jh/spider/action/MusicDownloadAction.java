@@ -73,32 +73,32 @@ public class MusicDownloadAction extends ActionSupport {
 	public String execute() throws Exception {
 		String url="http://f5.htqyy.com/play9/"+this.sid+"/mp3/7";
 		String savepath=this.fileName+"【"+this.getAtr()+"】"+".mp3";
-//		if(DownLoadUtils.downUrl(url,savepath,this.getCateName())) {
-//			SongsService service=new SongsServiceImpl();
-//			Songs s=new Songs();
-//			s.setId(new Integer(this.sid));
-//			s.setAblum(this.getAtr());
-//			s.setName(this.fileName);
-//			s.setCategory(this.getCateName());
-//			s.setDesc(this.getDesc());
-//			s.setLink(url);
-//			s.setDate(new Date());
-//			service.addSongs(s);
-//			this.setHtml("下载成功");
-//		}else{
-//			this.setHtml("下载失败");
-//		};
-		SongsService service=new SongsServiceImpl();
-		Songs s=new Songs();
-		s.setId(new Integer(this.sid));
-		s.setAblum(this.getAtr());
-		s.setName(this.fileName);
-		s.setCategory(this.getCateName());
-		s.setDesc(this.getDesc());
-		s.setLink(url);
-		s.setDate(new Date());
-		service.addSongs(s);
-		this.setHtml("下载成功");
+		if(DownLoadUtils.downUrl(url,savepath,this.getCateName())) {
+			SongsService service=new SongsServiceImpl();
+			Songs s=new Songs();
+			s.setId(new Integer(this.sid));
+			s.setAblum(this.getAtr());
+			s.setName(this.fileName);
+			s.setCategory(this.getCateName());
+			s.setDesc(this.getDesc());
+			s.setLink(url);
+			s.setDate(new Date());
+			service.addSongs(s);
+			this.setHtml("下载成功");
+		}else{
+			this.setHtml("下载失败");
+		};
+//		SongsService service=new SongsServiceImpl();
+//		Songs s=new Songs();
+//		s.setId(new Integer(this.sid));
+//		s.setAblum(this.getAtr());
+//		s.setName(this.fileName);
+//		s.setCategory(this.getCateName());
+//		s.setDesc(this.getDesc());
+//		s.setLink(url);
+//		s.setDate(new Date());
+//		service.addSongs(s);
+//		this.setHtml("下载成功");
 		return "success";
     }
 
